@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { Link } from 'react-router-dom';
 
 function Nav() {
     const [nav, setNav] = useState(false);
@@ -17,8 +18,16 @@ function Nav() {
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
-                    <button className='border-none bg-transparent text-black mr-4'>Sign In</button>
-                    <button className='px-8 py-3'>Sign Up</button>
+                    <Link to='/login'>
+                        <button className='border-none bg-transparent text-black mr-4 px-8 py-3'>
+                            Log In
+                        </button>
+                    </Link>
+                    <Link to='/signup'>
+                        <button className='px-8 py-3'>
+                            Sign Up
+                        </button>
+                    </Link>
                 </div>
                 <div className='md:hidden' onClick={handleClick}>
                     {/* if opposite of nav is true execute menuicon else display 'x' icon */}
@@ -30,8 +39,16 @@ function Nav() {
                 <li className='border-b-2 border-zinc-300 w-full'>Teams</li>
                 <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
                 <div className='flex flex-col my-4'>
-                    <button className='bg-transparent text-black-600 px-8 py-3 mb-4'>Sign In</button>
-                    <button className='px-8 py-3'>Sign Up</button>
+                    <Link to='/login'>
+                        <button className='bg-transparent text-black-600 px-8 py-3 mb-4'>
+                            Login
+                        </button>
+                    </Link>
+                    <Link to='/signup'>
+                        <button className='px-8 py-3'>
+                            Sign Up
+                        </button>
+                    </Link>
                 </div>
             </ul>
 

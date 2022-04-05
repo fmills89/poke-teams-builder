@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import profOak from '../../assets/professor-oak-image.png'
 
@@ -10,8 +11,12 @@ function About() {
                    <img className='' src={profOak} alt='professor oak' />
                </div>
                <div className='flex flex-col justify-center md:items-start w-full px-2 py-8'>
-                   <p className='text-2xl py-13 pb-6'>Welcome to Poke-Team! Create an account to start building teams!</p>
-                   <button className='py-3 px-6 sm:w-[60%]'>Get Started</button>
+                   <p className='text-2xl py-13 pb-6'>Welcome to Poke-Teams! Create an account to start building teams!</p>
+                   <Link to='/signup'>
+                        <button className='py-3 px-6 sm:w-full'>
+                            Get Started
+                        </button>
+                   </Link>
                </div>
            </div>
        </div>

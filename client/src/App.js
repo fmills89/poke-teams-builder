@@ -5,15 +5,17 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import SignIn from './pages/SignIn';
+import Login from './pages/SignIn';
 import NoMatch from './pages/NoMatch';
+import SignUp from './pages/Login';
 
 function App() {
   return (
     <Router>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/signup' component={SignIn} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/signup' component={SignUp} />
 
           <Route component={NoMatch} />
         </Switch>

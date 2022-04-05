@@ -1,21 +1,18 @@
 import React from 'react';
-
 import pokeHeart from '../../assets/pokeball-heart-icon.png'
+// import gitIcon from '../../assets/github-icon.png'
 
 function Footer() {
     return (
-        <footer className="bg-red-700 shadow-lg">
-            <div className='flex items-center p-4'>
-                {/* <div className="sm:flex justify-left"> */}
-                    <p className="text-white text-sm font-bold p-3">
-                        Made with
-                    </p>
+        <footer className='w-full mt-24 bg-red-700 text-gray-300 py-y px-2 shadow-lg'>
+            <div className='max-w-[1240px] max-auto flex items-center'>
+                    <h6>Made with </h6>
                     <img
-                        src={pokeHeart}
-                        alt='pokeball-heart'
                         className='scale-75'
-                    ></img>
-                {/* </div> */}
+                        src={pokeHeart} alt="pokeball shaped heart" />
+                    {/* <img
+                        className='scale-75 '
+                        src={gitIcon} alt='github logo' /> */}
             </div>
         </footer>
     )

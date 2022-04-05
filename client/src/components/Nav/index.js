@@ -7,7 +7,7 @@ function Nav() {
     const handleClick = () => setNav(!nav)
 
     return (
-        <div className="w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadow-lg">
+        <div className="w-screen h-[80px] z-10 bg-zinc-200 drop-shadow-lg">
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex items-center'>
                     <h1 className='text-base font-bold mr-4 sm:text-1xl'>Dashboard</h1>

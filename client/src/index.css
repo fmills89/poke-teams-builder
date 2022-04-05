@@ -7,5 +7,20 @@
 @layer base {
     body {
         font-family: 'Press Start 2P', cursive;
+        
     }
+
+    li {
+        @apply p-4
+    }
+
+    button {
+        @apply text-white border bg-red-600 border-red-600
+        hover:bg-transparent hover:text-red-600 rounded-md
+    }
+}
+
+
+body {
+    background-color: #E3E1E6;
 }

@@ -20,7 +20,7 @@ function Nav() {
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
-                    <Link to='/login'>
+                    <Link to='/signup'>
                         <button className='border-none bg-transparent text-black mr-4 px-8 py-3'>
                             Log In
                         </button>
@@ -41,7 +41,7 @@ function Nav() {
                 <li className='border-b-2 border-zinc-300 w-full'>Teams</li>
                 <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
                 <div className='flex flex-col my-4'>
-                    <Link to='/login'>
+                    <Link to='/signup'>
                         <button className='bg-transparent text-black-600 px-8 py-3 mb-4'>
                             Login
                         </button>

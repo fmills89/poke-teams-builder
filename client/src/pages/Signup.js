@@ -13,7 +13,7 @@ function SignUp() {
             </>
                 <div class='min-h-screen text-gray-800 antialiased px-4 py-6 flex flex-col justify-center sm:py-12'>
                 <div>
-                    <img className='' src={profOak} alt='profressor oak' />
+                    <img className='scale-50' src={profOak} alt='profressor oak' />
                 </div>
                     <div class='relative py-3 sm:max-w-xl mx-auto text-center'>
                         <span class='text-2xl font-light'>Ready to build some teams?!</span>

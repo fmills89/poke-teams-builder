@@ -28,7 +28,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        teams: [Team]
+        teams(username: String): [Team]
         pokemon(name: String!): Pokemon
     }
 

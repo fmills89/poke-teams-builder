@@ -22,12 +22,12 @@ function Nav() {
                 </div>
                 <div className='hidden md:flex pr-4'>
                     <Link to='/signup'>
-                        <button className='border-none bg-transparent text-black mr-4 px-8 py-3'>
-                            Log In
+                        <button className='bg-transparent text-black'>
+                            Login
                         </button>
                     </Link>
                     <Link to='/signup'>
-                        <button className='px-8 py-3'>
+                        <button>
                             Sign Up
                         </button>
                     </Link>

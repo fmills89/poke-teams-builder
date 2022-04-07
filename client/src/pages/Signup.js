@@ -23,8 +23,8 @@ function SignUp() {
                                 <label className='block mt-3 font-semibold'>Password</label>
                                 <input type='password' placeholder='Password' className='border-red-300 w-full h-5 px-3 py-5 my-2 rounded-md'></input>
                                 <div className='flex justify-around items-baseline'>
-                                    <button className='mt-4 bg-red-500 text-white text-xs md:text-base py-2 px-6 rounded-lg'>Login</button>
-                                    <button className='mt-4 bg-red-500 text-white text-xs md:text-base py-2 px-4 rounded-lg'>Sign up</button>
+                                    <button>Login</button>
+                                    <button>Sign up</button>
                             </div>
                         </div>
                     </div>

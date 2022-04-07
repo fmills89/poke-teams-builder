@@ -101,15 +101,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-
-/*
-
-        login(username: String!, password: String!): Auth
-        addTeam(_id: ID!, pokemon: [Pokemon]): Team
-        updateTeam(_id: ID!): Team
-        removeTeam(_id: ID!): Team
-        updateUser(username: String!, teams: [Team]): User
-
-
-
-*/

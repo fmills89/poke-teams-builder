@@ -33,7 +33,8 @@ export const ADD_TEAM = gql`
 
 // addUser(username: String!, password: String!): Auth
 // login(username: String!, password: String!): Auth
-// addTeam(_id: ID!, pokemon: [Pokemon]): Team
-// updateTeam(_id: ID!): Team
+// addTeam(pokemon: [PokemonInput]!): Team
+// addToTeam(teamId: ID!, pokemon: PokemonInput!): Team
+// removeFromTeam(teamId: ID!, pokemonId: ID!): Team
 // removeTeam(_id: ID!): Team
-// updateUser(username: String!, teams: [Team]): User
+// updateUser(username: String!, teams: [TeamInput]): User

@@ -78,16 +78,28 @@ const resolvers = {
             }
             throw new AuthenticationError('You must be logged in');
         },
-        updateTeam: async (parent, { _id, pokemonId, name, type, image }, context) => {
+        addToTeam: async (parent, { teamId, pokemonInput }, context) => {
             if (context.user) {
               const updatedTeam = await Team.findOneAndUpdate(
-                { _id: _id },
-                { $addToSet: { pokemon: pokemonId, name, type, image, username: context.user.username } },
+                { _id: teamId },
+                { $addToSet: { pokemon: pokemonInput } },
                 { new: true }
-              ).populate('teams');
+              );
       
               return updatedTeam;
             }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        removeFromTeam: async(parent, { teamId, pokemonId}, context) {
+            if (context.user) {
+                const updatedTeam = await Team.findOneAndUpdate(
+                  { _id: teamId },
+                  { $pull: { pokemon: pokemonId } },
+                  { new: true }
+                );
+        
+                return updatedTeam;
+              }
             throw new AuthenticationError('You need to be logged in!');
         },
         removeTeam: async (parent, { _id }, context) => {

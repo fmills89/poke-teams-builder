@@ -90,16 +90,15 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        removeFromTeam: async(parent, { teamId, pokemonId}, context) {
+        removeFromTeam: async(parent, { teamId, pokemonId}, context) => {
             if (context.user) {
                 const updatedTeam = await Team.findOneAndUpdate(
                   { _id: teamId },
                   { $pull: { pokemon: pokemonId } },
                   { new: true }
                 );
-        
                 return updatedTeam;
-              }
+            }
             throw new AuthenticationError('You need to be logged in!');
         },
         removeTeam: async (parent, { _id }, context) => {

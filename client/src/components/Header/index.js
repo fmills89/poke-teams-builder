@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Header() {
     return(
@@ -11,7 +12,9 @@ function Header() {
                         className='p-3'
                     ></img>
                         <div className="">
-                            <p className="text-white text-5xl font-bold p-6">POKE-TEAMS</p>
+                            <Link to='/'>
+                                <p className="text-white text-5xl font-bold p-6">POKE-TEAMS</p>
+                            </Link>
                         </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ const typeDefs = gql`
     type User{
         _id: ID
         username: String
-        teams: [Team]
+        teams: [TeamInput!]
     }
 
     type Pokemon{
@@ -14,7 +14,19 @@ const typeDefs = gql`
         image: String
     }
 
+    input PokemonInput{
+        _id: ID
+        name: String
+        type: String
+        image: String
+    }
+
     type Team{
+        _id: ID
+        pokemon: [PokemonInput!]
+    }
+
+    input TeamInput{
         _id: ID
         pokemon: [Pokemon]
     }
@@ -35,10 +47,10 @@ const typeDefs = gql`
     type Mutation{
         addUser(username: String!, password: String!): Auth
         login(username: String!, password: String!): Auth
-        addTeam(pokemon: [Pokemon]): Team
-        updateTeam(_id: ID!, pokemonId: ID!, name: String!, type: String!, image: String!): Team
+        addTeam(pokemon: [PokemonInput]!): Team
+        updateTeam(_id: ID!, pokemon: PokemonInput): Team
         removeTeam(_id: ID!): Team
-        updateUser(username: String!, teams: [Team]): User
+        updateUser(username: String!, teams: [TeamInput]): User
     }
 `;
 

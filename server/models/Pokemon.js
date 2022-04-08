@@ -1,15 +1,11 @@
-const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
 
-const { Schema } = mongoose;
+const pokemonSchema = new Schema({
 
-const teamSchema = new Schema({
-    pokemon:{
+    pokemon: {
         type: String,
         required: true
     }
 });
 
-
-const Team = mongoose.model('Team', teamSchema);
-
-module.exports = Team;
+module.exports = pokemonSchema;

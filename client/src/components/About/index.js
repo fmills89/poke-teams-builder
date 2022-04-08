@@ -5,7 +5,7 @@ import profOak from '../../assets/professor-oak-image.png'
 
 function About() {
     return(
-       <div className='w-full h-screen bg-zinc-200 flex flex-col justify-between px-10 pb-64'>
+       <div className='w-full h-screen flex flex-col justify-between px-10 pb-64'>
            <div className='grid md:grid-cols-2 max-w-[1240px] m-auto'>
                <div>
                    <img className='' src={profOak} alt='professor oak' />

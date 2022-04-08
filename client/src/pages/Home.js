@@ -1,17 +1,12 @@
 import React from 'react';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
-import About from '../components/About';
-import Footer from '../components/Footer';
+import Teams from '../components/Teams';
+
+import Auth from '../utils/auth';
+import { useQuery } from '@apollo/client';
 
 const Home = () => {
     return (
-        <>
-        <Header />
-        <Nav />
-        <About />
-        <Footer />
-        </>
+       <Teams />
     )
 };
 

@@ -12,22 +12,21 @@ function Nav() {
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex items-center'>
                     <Link to='/'>
-                        <h1 className='text-base font-bold mr-4 sm:text-1xl'>Dashboard</h1>
+                        <h1 className='text-base mr-4 sm:text-1xl'>Dashboard</h1>
                     </Link>
                     <ul className='hidden md:flex'>
-                        <li>Teams</li>
                         <li>Trainer</li>
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
                     <Link to='/signup'>
-                        <button className='border-none bg-transparent text-black mr-4 px-8 py-3'>
-                            Log In
+                        <button className='bg-transparent text-black'>
+                            Login
                         </button>
                     </Link>
                     <Link to='/signup'>
-                        <button className='px-8 py-3'>
-                            Sign Up
+                        <button>
+                            SignUp
                         </button>
                     </Link>
                 </div>
@@ -38,8 +37,7 @@ function Nav() {
             </div>
             {/* if nav is not true display hidden else display absolute */}
             <ul className={!nav ? 'hidden' : 'absolute bg-zinc-200 w-full px-8'}>
-                <li className='border-b-2 border-zinc-300 w-full'>Teams</li>
-                <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
+                    <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
                 <div className='flex flex-col my-4'>
                     <Link to='/signup'>
                         <button className='bg-transparent text-black-600 px-8 py-3 mb-4'>

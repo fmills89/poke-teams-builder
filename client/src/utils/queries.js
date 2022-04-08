@@ -26,6 +26,32 @@ export const QUERY_USER = gql`
 	}
 `;
 
+export const QUERY_ALL_USERS = gql`
+	query users {
+		users {
+			_id
+			username
+		}
+	}
+`;
+
+export const QUERY_ALL_TEAMS = gql`
+	query teams(username: String) {
+		team {
+			pokemon
+		}
+	}
+`;
+
+export const QUERY_TEAM = gql`
+	query team($_id: ID!) {
+		team(_id: $_id) {
+			_id
+			pokemon
+		}
+	}
+`;
+
 export const QUERY_POKEMON = gql`
 	query pokemon($name: String) {
 		species: pokemon_v2_pokemonspecies(where: { name: { _eq: $name } }) {

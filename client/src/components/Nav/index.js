@@ -15,8 +15,6 @@ function Nav() {
                         <h1 className='text-base font-bold mr-4 sm:text-1xl'>Dashboard</h1>
                     </Link>
                     <ul className='hidden md:flex'>
-                        <li>
-                            <Link to='/teams'>Teams</Link></li>
                         <li>Trainer</li>
                     </ul>
                 </div>
@@ -39,7 +37,6 @@ function Nav() {
             </div>
             {/* if nav is not true display hidden else display absolute */}
             <ul className={!nav ? 'hidden' : 'absolute bg-zinc-200 w-full px-8'}>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link to='/teams'>Teams</Link></li>
                     <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
                 <div className='flex flex-col my-4'>
                     <Link to='/signup'>

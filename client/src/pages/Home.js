@@ -1,17 +1,9 @@
 import React from 'react';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
-import About from '../components/About';
-import Footer from '../components/Footer';
+import Teams from './Teams';
 
 const Home = () => {
     return (
-        <>
-        <Header />
-        <Nav />
-        <About />
-        <Footer />
-        </>
+       <Teams />
     )
 };
 

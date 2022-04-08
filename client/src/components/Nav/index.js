@@ -12,7 +12,7 @@ function Nav() {
             <div className='px-2 flex justify-between items-center w-full h-full'>
                 <div className='flex items-center'>
                     <Link to='/'>
-                        <h1 className='text-base font-bold mr-4 sm:text-1xl'>Dashboard</h1>
+                        <h1 className='text-base mr-4 sm:text-1xl'>Dashboard</h1>
                     </Link>
                     <ul className='hidden md:flex'>
                         <li>Trainer</li>
@@ -26,7 +26,7 @@ function Nav() {
                     </Link>
                     <Link to='/signup'>
                         <button>
-                            Sign Up
+                            SignUp
                         </button>
                     </Link>
                 </div>

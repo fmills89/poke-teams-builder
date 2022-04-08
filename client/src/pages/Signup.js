@@ -1,18 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+
 import profOak from '../assets/professor-oak-image.png'
 
 function SignUp() {
+    // const [signupState, setSignpState] = useState({
+
+    // })
     return (
         <div>
-            <>
-            <Header />
-            <Nav />
-            </>
-                <div class='grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center mb-8 px-10 pb-64 w-full md:h-screen max-h-full'>
+            <div class='grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center mb-8 px-10 pb-64 w-full md:h-screen max-h-full'>
                         <img class='md:scale-100 scale-25' src={profOak} alt='profressor oak' />
                     <div className=' mt-8 bg-white shadow-md sm:rounded-lg text-left'>
                         <p class='text-center p-6'>Lets start building your teams!</p>
@@ -29,7 +27,6 @@ function SignUp() {
                         </div>
                     </div>
                 </div>
-            <Footer />
         </div>
     );
 };

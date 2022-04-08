@@ -1,29 +1,57 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import NoMatch from './pages/NoMatch';
-import Teams from './pages/Teams';
+import Teams from './components/Teams';
 import Header from './components/Header';
 import Nav from './components/Nav';
-import About from './components/About';
+import Footer from './components/Footer';
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    header: {
+      ...headers,
+      authorization: token ? `Bearer ${token}`: '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
   return (
-    <Router>
-      <>
-      <Header />
-      <Nav />
-      <About />
-      </>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/teams' component={Teams} />
-          <Route component={NoMatch} />
-        </Switch>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <>
+        <Header />
+        <Nav />
+        </>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/teams' component={Teams} />
+            <Route component={NoMatch} />
+          </Switch>
+        <Footer />
+      </Router>
+    </ApolloProvider>
   );
 }
 

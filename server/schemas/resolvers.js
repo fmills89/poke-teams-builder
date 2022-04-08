@@ -67,7 +67,7 @@ const resolvers = {
         },
         addTeam: async (parent, args, context) => {
             if(context.user){
-                const newTeam = await Team.create({ ...args, username: context.user.username})
+                const newTeam = await Team.create()
 
                 await User.findByIdAndUpdate(
                     { _id: context.user.id },

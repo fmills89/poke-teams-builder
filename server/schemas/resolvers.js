@@ -69,30 +69,32 @@ const resolvers = {
 			if (context.user) {
 				console.log(context.user);
 				console.log(context.user._id);
-				const newTeam = await Team.create();
+				const newTeam = await Team.create({ ...args, username: context.user.username});
+                console.log(args);
 
 				await User.findByIdAndUpdate(
 					console.log(newTeam),
-					{ _id: context.user._id },
-					{ $push: { teams: newTeam._id } },
-					{ new: true }
+					{ _id: context.user._id, 
+                        $push: { teams: newTeam._id }, 
+                        new: true }
 				);
+                console.log(newTeam._id);
 				return newTeam;
 			}
 			throw new AuthenticationError("You must be logged in");
 		},
-		addToTeam: async (parent, { teamId, pokemonInput }, context) => {
-			if (context.user) {
-				const updatedTeam = await Team.findOneAndUpdate(
-					{ _id: teamId },
-					{ $addToSet: { pokemon: pokemonInput } },
-					{ new: true }
-				);
+		// addToTeam: async (parent, { teamId, pokemonInput }, context) => {
+		// 	if (context.user) {
+		// 		const updatedTeam = await Team.findOneAndUpdate(
+		// 			{ _id: teamId },
+		// 			{ $addToSet: { pokemon: pokemonInput } },
+		// 			{ new: true }
+		// 		);
 
-				return updatedTeam;
-			}
-			throw new AuthenticationError("You need to be logged in!");
-		},
+		// 		return updatedTeam;
+		// 	}
+		// 	throw new AuthenticationError("You need to be logged in!");
+		// },
 		removeFromTeam: async (parent, { teamId, pokemonId }, context) => {
 			if (context.user) {
 				const updatedTeam = await Team.findOneAndUpdate(

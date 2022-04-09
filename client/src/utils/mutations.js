@@ -25,8 +25,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TEAM = gql`
-	mutation addTeam() {
-		addTeam() {
+	mutation addTeam {
+		addTeam {
+			_id
+			name
+			username
 		}
 	}
 `;

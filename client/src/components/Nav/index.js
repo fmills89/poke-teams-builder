@@ -19,16 +19,16 @@ function Nav() {
                     </ul>
                 </div>
                 <div className='hidden md:flex pr-4'>
-                    <Link to='/signup'>
+                    <Link to='/login'>
                         <button className='bg-transparent text-black'>
                             Login
                         </button>
                     </Link>
-                    <Link to='/signup'>
+                    {/* <Link to='/signup'>
                         <button>
                             SignUp
                         </button>
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className='md:hidden' onClick={handleClick}>
                     {/* if opposite of nav is true execute menuicon else display 'x' icon */}
@@ -39,16 +39,16 @@ function Nav() {
             <ul className={!nav ? 'hidden' : 'absolute bg-zinc-200 w-full px-8'}>
                     <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
                 <div className='flex flex-col my-4'>
-                    <Link to='/signup'>
+                    <Link to='/login'>
                         <button className='bg-transparent text-black-600 px-8 py-3 mb-4'>
                             Login
                         </button>
                     </Link>
-                    <Link to='/signup'>
+                    {/* <Link to='/signup'>
                         <button className='px-8 py-3'>
-                            Sign Up
+                            SignUp
                         </button>
-                    </Link>
+                    </Link> */}
                 </div>
             </ul>
 

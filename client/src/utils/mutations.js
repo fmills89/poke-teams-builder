@@ -24,6 +24,7 @@ export const ADD_USER = gql`
 	}
 `;
 
+<<<<<<< HEAD
 export const ADD_TEAM = gql`
 	mutation addTeam {
 		addTeam {
@@ -33,6 +34,14 @@ export const ADD_TEAM = gql`
 		}
 	}
 `;
+=======
+// export const ADD_TEAM = gql`
+// 	mutation addTeam() {
+// 		addTeam() {
+// 		}
+// 	}
+// `;
+>>>>>>> develop
 
 // addUser(username: String!, password: String!): Auth
 // login(username: String!, password: String!): Auth

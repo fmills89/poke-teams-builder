@@ -28,7 +28,7 @@ const typeDefs = gql`
 
 	input TeamInput {
 		_id: ID
-		pokemon: [Pokemon]
+		pokemon: [PokemonInput]
 	}
 
 	type Auth {

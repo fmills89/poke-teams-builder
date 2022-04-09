@@ -71,41 +71,9 @@ function Login(props) {
                             </div>
                             {error && <div>Login failed</div>}
                         </form>
-                                    <Modal />
+                        <Modal />
                     </div>
                 </div>
-                {/* <div class='bg-black bg-opacity-50 absolute inset-0 hidden flex justify-center items-center' id='overlay'>
-                    <div class='bg-gray-200'>
-                        <div>
-                        <div className='h-2 bg-red-400 rounded-t-md'></div>
-                            <div class='flex justify-end'>
-                                <XIcon className='w-5' id='close-modal' />
-                            </div>
-                            <form className='py-8 px-8' onSubmit={handleFormSubmit}>
-                                <label className='block font-semibold'>Username</label>
-                                <input 
-                                    type='text'
-                                    name='username'
-                                    placeholder='Username' 
-                                    className='border-red-300 w-full h-5 px-3 py-5 mt-2 rounded-md'
-                                    value= {signupState.username}
-                                    onChange={handleChange} />
-                                <label className='block mt-3 font-semibold'>Password</label>
-                                <input 
-                                    type='password'
-                                    name='password'
-                                    placeholder='Password' 
-                                    className='border-red-300 w-full h-5 px-3 py-5 my-2 rounded-md form-input' 
-                                    value={signupState.password} 
-                                    onChange={handleChange} />
-                                <div className='flex justify-around items-baseline'>
-                                    <button type=''>SignUp</button>
-                            </div>
-                            {error && <div>Signup failed</div>}
-                        </form>
-                        </div>
-                    </div>
-                </div> */}
         </div>  
     );
 };

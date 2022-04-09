@@ -4,7 +4,7 @@ const typeDefs = gql`
 	type User {
 		_id: ID
 		username: String
-		teams: [TeamInput!]
+		teams: [Team]
 	}
 
 	type Pokemon {
@@ -23,7 +23,7 @@ const typeDefs = gql`
 
 	type Team {
 		_id: ID
-		pokemon: [PokemonInput!]
+		pokemon: [Pokemon]
 	}
 
 	input TeamInput {
@@ -41,7 +41,9 @@ const typeDefs = gql`
 		users: [User]
 		user(username: String!): User
 		teams(username: String): [Team]
+		team(_id: ID!): Team
 		pokemon(name: String!): Pokemon
+		pokemonType(type: String!): Pokemon
 	}
 
 	type Mutation {

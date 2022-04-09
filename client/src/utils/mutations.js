@@ -28,7 +28,6 @@ export const ADD_TEAM = gql`
 	mutation addTeam {
 		addTeam {
 			_id
-			name
 			username
 		}
 	}

@@ -14,16 +14,13 @@ export const QUERY_ME = gql`
 `;
 
 export const QUERY_USER = gql`
-	query user($username: String!) {
-		user(username: $username) {
-			_id
-			username
-            teams: {
-                _id
-                pokemon
-            }
-		}
+query user($username: String!) {
+	user(username: $username) {
+		_id
+		username
+		teams {...{_id}}}   
 	}
+}
 `;
 
 export const QUERY_ALL_USERS = gql`
@@ -36,11 +33,11 @@ export const QUERY_ALL_USERS = gql`
 `;
 
 export const QUERY_ALL_TEAMS = gql`
-	query teams(username: String) {
-		team {
-			pokemon
-		}
+query teams($username: String!) {
+	user(username: $username) {
+ 	teams {...{_id}}}   
 	}
+}
 `;
 
 export const QUERY_TEAM = gql`

@@ -23,6 +23,7 @@ const typeDefs = gql`
 
 	type Team {
 		_id: ID
+		username: String
 		pokemon: [Pokemon]
 	}
 

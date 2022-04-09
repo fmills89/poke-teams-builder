@@ -8,38 +8,28 @@ import Auth from '../utils/auth';
 import profOak from '../assets/professor-oak-image.png'
 
 function Login(props) {
-    const [formState, setFormState] = useState({ username: '', password: ''});
+    const [formState, setFormState] = useState({ username: '', password: '' });
     const [login, { error }] = useMutation(LOGIN_USER);
-
-    // update state based on form input changes
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setFormState({
-            ...formState,
-            [name]: value,
+  
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+      try {
+        const mutationResponse = await login({
+          variables: { username: formState.username, password: formState.password },
         });
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+      } catch (e) {
+        console.log(e);
+      }
     };
-
-    // submit form
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const { data } = await login({
-                variables: { ...formState },
-            });
-
-            Auth.login(data.login.token);
-        } catch (e) {
-            console.error(e);
-        }
-
-        // clear form values
-        setFormState({
-            username: '',
-            password:'',
-        });
+  
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
     };
 
     return (
@@ -67,7 +57,7 @@ function Login(props) {
                                     value={formState.password} 
                                     onChange={handleChange} />
                                 <div className='flex justify-around items-baseline'>
-                                    <button class='mt-2 p-2'>Login</button>
+                                    <button type='submit' class='mt-2 p-2 bg-red-500'>Login</button>
                             </div>
                             {error && <div>Login failed</div>}
                         </form>

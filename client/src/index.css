@@ -15,9 +15,15 @@
     }
 
     button {
-        @apply text-white border bg-red-600 border-red-600
-        hover:bg-transparent hover:text-red-600 rounded-md
+        @apply m-4 bg-red-500 text-white text-xs md:text-base py-2 px-6 rounded-lg shadow-lg shadow-red-500/50 opacity-100 hover:opacity-75
     }
+    
+    .card {
+        background-color: theme('colors.white');
+        border-radius: theme('borderRadius.lg');
+        padding: theme('spacing.6');
+        box-shadow: theme('boxShadow.xl');
+      }
 }
 
 

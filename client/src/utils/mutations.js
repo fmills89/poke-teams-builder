@@ -25,10 +25,14 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TEAM = gql`
-	mutation addTeam {
-		addTeam {
-			_id
-			username
+	mutation addTeam($pokemon: PokemonInput!) {
+		addTeam (pokemon: $pokemon){
+			pokemon{
+				_id
+				name
+				type
+				image
+			}
 		}
 	}
 `;

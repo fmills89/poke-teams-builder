@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Auth from '../../utils/auth';
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,11 @@ function Nav() {
     const [nav, setNav] = useState(false);
     const handleClick = () => setNav(!nav)
 
+    const logout = event => {
+        event.preventDefault();
+        Auth.logout();
+    };
+
     return (
         <div className="w-screen h-[80px] z-10 bg-zinc-200 drop-shadow-lg">
             <div className='px-2 flex justify-between items-center w-full h-full'>
@@ -14,16 +20,31 @@ function Nav() {
                     <Link to='/'>
                         <h1 className='text-base mr-4 sm:text-1xl'>Dashboard</h1>
                     </Link>
-                    <ul className='hidden md:flex'>
-                        <li>Trainer</li>
-                    </ul>
-                </div>
-                <div className='hidden md:flex pr-4'>
-                    <Link to='/login'>
-                        <button className='bg-transparent text-black'>
-                            Login
-                        </button>
-                    </Link>
+                        {Auth.loggedIn() ? (
+                            <>
+                        <ul className='hidden md:flex'>
+                            <li>Trainer</li>
+                        </ul>
+                        <div class='hidden md:flex pr-4'>
+                            <Link to='/'>
+                                <button onClick={logout}>Logout</button>
+                            </Link>
+                        </div>
+                            </>
+                        ) : (
+                            <>
+                            <div className='hidden md:flex pr-4'>
+                            <ul>
+                                <Link to='/login'>
+                                    <button className='bg-transparent text-black'>
+                                        Login
+                                    </button>
+                                </Link>
+                                </ul>
+                            </div>
+                            </>
+                        
+                        )}
                     {/* <Link to='/signup'>
                         <button>
                             SignUp

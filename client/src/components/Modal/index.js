@@ -4,27 +4,35 @@ import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const Modal = () => {
-  const [formState, setFormState] = useState({ username: '', password: '' });
-  const [addUser] = useMutation(ADD_USER);
+  const [formState, setFormState] = useState({ username: '', email: '', password: '' });
+  const [addUser, { error }] = useMutation(ADD_USER);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const mutationResponse = await addUser({
-      variables: {
-        username: formState.username,
-        password: formState.password
-      },
-    });
-    const token = mutationResponse.data.addUser.token;
-    Auth.login(token);
-  };
-
-  const handleChange = (event) => {
+  // update state based on form input changes
+  const handleChange = event => {
     const { name, value } = event.target;
+
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value
     });
+  };
+
+  // submit form
+  const handleFormSubmit = async event => {
+    event.preventDefault();
+
+    // use try/catch instead of promises to handle errors
+    try {
+      // execute addUser mutation and pass in variable data from form
+      const { data } = await addUser({
+        variables: { ...formState }
+      });
+
+      Auth.login(data.addUser.token)
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const [showModal, setShowModal] = useState(false);
@@ -80,16 +88,17 @@ const Modal = () => {
                         value={formState.password} 
                         onChange={handleChange} 
                     />
+                      <div class='flex justify-around my-4 px-4'>
+                        <button
+                          // onClick={() => setShowModal(false)}
+                          type='submit'
+                          class='bg-red-600'
+                        >
+                          SignUp
+                        </button>
+                      </div>
+                    {error && <div>Sign up failed</div>}
                   </form>
-                </div>
-                <div class='flex justify-around my-4 px-4'>
-                  <button
-                    onClick={() => setShowModal(false)}
-                    type='submit'
-                    class='bg-red-600'
-                  >
-                    SignUp
-                  </button>
                 </div>
               </div>
             </div>

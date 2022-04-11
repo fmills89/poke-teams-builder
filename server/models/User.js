@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
-const Team = require('./Team');
 
 const userSchema = new Schema({
     username: {

@@ -8,14 +8,10 @@ const teamSchema = new Schema({
 		type: String,
 		require: true,
 	},
-	pokemon: [pokemonSchema]
-	// pokemon: [
-	// 	{
-	// 		type: String,
-	// 		ref: 'Pokemon',
-	// 		validate: [arrayLimit, "Must not exceed 6 pokemon"],
-	// 	},
-	// ],
+	pokemon: {
+		type: [pokemonSchema],
+		validate: [arrayLimit, "Cannot have more than 6 Pokemon in a team!"]
+	}
 });
 
 function arrayLimit(val) {

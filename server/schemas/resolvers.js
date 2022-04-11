@@ -73,12 +73,13 @@ const resolvers = {
                 console.log(args);
 
 				await User.findByIdAndUpdate(
-					console.log(newTeam),
-					{ _id: context.user._id, 
-                        $push: { teams: newTeam._id }, 
-                        new: true }
-				);
+					{ _id: context.user._id },
+					{$push: { teams: newTeam }},
+					{ new: true, upsert: true }
+				).populate('teams');
+
                 console.log(newTeam._id);
+				console.log(newTeam);
 				return newTeam;
 			}
 			throw new AuthenticationError("You must be logged in");

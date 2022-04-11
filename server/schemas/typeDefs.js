@@ -23,6 +23,7 @@ const typeDefs = gql`
 
 	type Team {
 		_id: ID
+		username: String
 		pokemon: [Pokemon]
 	}
 
@@ -49,8 +50,7 @@ const typeDefs = gql`
 	type Mutation {
 		addUser(username: String!, password: String!): Auth
 		login(username: String!, password: String!): Auth
-		addTeam: Team
-		addToTeam(teamId: ID!, pokemon: PokemonInput!): Team
+		addTeam(pokemon: PokemonInput!): Team
 		removeFromTeam(teamId: ID!, pokemonId: ID!): Team
 		removeTeam(_id: ID!): Team
 		updateUser(username: String!, teams: [TeamInput]): User

@@ -24,12 +24,18 @@ export const ADD_USER = gql`
 	}
 `;
 
-// export const ADD_TEAM = gql`
-// 	mutation addTeam() {
-// 		addTeam() {
-// 		}
-// 	}
-// `;
+export const ADD_TEAM = gql`
+	mutation addTeam($pokemon: PokemonInput!) {
+		addTeam (pokemon: $pokemon){
+			pokemon{
+				_id
+				name
+				type
+				image
+			}
+		}
+	}
+`;
 
 // addUser(username: String!, password: String!): Auth
 // login(username: String!, password: String!): Auth

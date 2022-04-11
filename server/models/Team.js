@@ -1,20 +1,21 @@
 const mongoose = require("mongoose");
+const pokemonSchema = require("./Pokemon");
 
 const { Schema } = mongoose;
-const pokemonSchema = require("./Pokemon");
 
 const teamSchema = new Schema({
 	username: {
 		type: String,
 		require: true,
 	},
-	pokemon: [
-		{
-			type: String,
-			ref: pokemonSchema,
-			validate: [arrayLimit, "Must not exceed 6 pokemon"],
-		},
-	],
+	pokemon: [pokemonSchema]
+	// pokemon: [
+	// 	{
+	// 		type: String,
+	// 		ref: 'Pokemon',
+	// 		validate: [arrayLimit, "Must not exceed 6 pokemon"],
+	// 	},
+	// ],
 });
 
 function arrayLimit(val) {

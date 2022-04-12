@@ -1,30 +1,44 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
-import { searchPokemon } from '../../utils/API';
+import { fetchPokemon_details } from '../../utils/API';
 
 import profOak from '../../assets/professor-oak-image.png'
-
 import snorlax from '../../assets/snorlax-icon.png'
 import profOakNavi from '../../assets/professoroak-navi.png'
 
 function Teams() {
- 
+    const [searchInput, setSearchInput] = useState('');
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        if (!searchInput) {
+            return false;
+        }
 
+        try {
+            const response = await fetchPokemon_details(searchInput);
+
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
+            }
+
+            const { items } = await response.json();
+
+            setSearchInput('');
+        } catch (err) {
+            console.error(err);
+        }
     };
-
     return (
         <div>
             {Auth.loggedIn() ? (
                 <>
                     <div class='grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center mb-8 px-10 pb-64 w-full md:h-screen max-h-full'>
-                        <div class=''>
+                        <div class='card'>
                             <div class='mt-8 bg-white shadow-md sm:rounded-lg rounded-lg text-left'>
-                                <div class='flex'>
+                                <div class='md:flex-wrap flex'>
                                     <img class='mx-2 px-2 pt-2 md:scale-100 scale-75'src={profOakNavi} alt='professor-oak-navi' />
                                     <p class='text-center p-4 mt-10'>Begin by searching for a pokemon to add to your team!</p>
                                 </div>
@@ -34,6 +48,8 @@ function Teams() {
                                     <input 
                                         type='text'
                                         name='searchInput'
+                                        value={searchInput}
+                                        onChange={(e) => setSearchInput(e.target.value)}
                                         placeholder='Name' 
                                         className='border-red-300 w-full h-5 px-3 py-5 my-2 rounded-md'
                                          />

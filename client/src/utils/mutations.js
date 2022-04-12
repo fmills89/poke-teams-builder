@@ -25,7 +25,7 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_TEAM = gql`
-	mutation addTeam($pokemon: PokemonInput!) {
+	mutation addTeam($pokemon: [PokemonInput!]) {
 		addTeam (pokemon: $pokemon){
 			pokemon{
 				_id

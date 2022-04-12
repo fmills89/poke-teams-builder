@@ -57,4 +57,4 @@ function listByType(name) {
 
 module.exports = {
     fetchPokemon_details
-}
+};

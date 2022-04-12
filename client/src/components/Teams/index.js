@@ -1,7 +1,7 @@
-import React from 'react';
-import About from '../About';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../../utils/auth';
+import { searchPokemon } from '../../utils/API';
 
 import profOak from '../../assets/professor-oak-image.png'
 
@@ -9,6 +9,14 @@ import snorlax from '../../assets/snorlax-icon.png'
 import profOakNavi from '../../assets/professoroak-navi.png'
 
 function Teams() {
+ 
+
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+
+
+    };
+
     return (
         <div>
             {Auth.loggedIn() ? (
@@ -21,13 +29,18 @@ function Teams() {
                                     <p class='text-center p-4 mt-10'>Begin by searching for a pokemon to add to your team!</p>
                                 </div>
                             <div className='h-2 bg-red-400 rounded-t-md'></div>
-                                <div className='py-8 px-8 rounded-md'>
+                                <form className='py-8 px-8 rounded-md' onSubmit={handleFormSubmit}>
                                     <label className='block mt-3 font-semibold'>Enter Name:</label>
-                                    <input type='text' placeholder='Name' className='border-red-300 w-full h-5 px-3 py-5 my-2 rounded-md'></input>
+                                    <input 
+                                        type='text'
+                                        name='searchInput'
+                                        placeholder='Name' 
+                                        className='border-red-300 w-full h-5 px-3 py-5 my-2 rounded-md'
+                                         />
                                     <div className='flex justify-around items-baseline'>
-                                        <button>Search</button>
+                                        <button type='submit' className='bg-red-500'>Search</button>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <div class="card p-20">
@@ -41,8 +54,8 @@ function Teams() {
                                         Type: Normal
                                     </div>
                                 </span>
+                                <button>Add to team!</button>
                             </div>
-                            <button>Add to team!</button>
                         </div>
                     </div>
                 </>

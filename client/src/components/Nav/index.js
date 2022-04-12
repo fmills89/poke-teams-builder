@@ -1,57 +1,59 @@
 import React, {useState} from 'react';
+import Auth from '../../utils/auth';
 
-import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { Link } from 'react-router-dom';
 
 function Nav() {
     const [nav, setNav] = useState(false);
-    const handleClick = () => setNav(!nav)
+
+    const logout = event => {
+        event.preventDefault();
+        Auth.logout();
+    };
 
     return (
         <div className="w-screen h-[80px] z-10 bg-zinc-200 drop-shadow-lg">
-            <div className='px-2 flex justify-between items-center w-full h-full'>
-                <div className='flex items-center'>
-                    <Link to='/'>
-                        <h1 className='text-base mr-4 sm:text-1xl'>Dashboard</h1>
-                    </Link>
-                    <ul className='hidden md:flex'>
-                        <li>Trainer</li>
-                    </ul>
-                </div>
-                <div className='hidden md:flex pr-4'>
-                    <Link to='/signup'>
-                        <button className='bg-transparent text-black'>
-                            Login
-                        </button>
-                    </Link>
-                    <Link to='/signup'>
-                        <button>
-                            SignUp
-                        </button>
-                    </Link>
-                </div>
-                <div className='md:hidden' onClick={handleClick}>
-                    {/* if opposite of nav is true execute menuicon else display 'x' icon */}
-                    {!nav ? <MenuIcon className='w-5' /> : <XIcon className='w-5' />}   
-                </div>
-            </div>
-            {/* if nav is not true display hidden else display absolute */}
-            <ul className={!nav ? 'hidden' : 'absolute bg-zinc-200 w-full px-8'}>
-                    <li className='border-b-2 border-zinc-300 w-full'>Trainer</li>
-                <div className='flex flex-col my-4'>
-                    <Link to='/signup'>
-                        <button className='bg-transparent text-black-600 px-8 py-3 mb-4'>
-                            Login
-                        </button>
-                    </Link>
-                    <Link to='/signup'>
-                        <button className='px-8 py-3'>
-                            Sign Up
-                        </button>
-                    </Link>
-                </div>
-            </ul>
-
+            {Auth.loggedIn() ? (
+                <>
+                    <div className='px-2 flex justify-between items-center w-full h-full'>
+                        <div class='flex items-center'>
+                            <ul className='flex text-sm'>
+                                <Link to='/'>
+                                    <li>Dashboard</li>
+                                </Link>
+                                <Link to='/team'>
+                                    <li>Team</li>
+                                </Link>
+                                <Link to='/'>
+                                    <li>Trainers</li>
+                                </Link>
+                            </ul>
+                        </div>
+                        <div class='md:flex pr-4'>
+                            <Link to='/'>
+                                <button onClick={logout}>Logout</button>
+                            </Link>
+                        </div>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className='px-2 flex justify-between items-center w-full h-full'>
+                        <div class='flex items-center'>
+                            <ul className='flex text-sm'>
+                                <Link to='/'>
+                                    <li>Dashboard</li>
+                                </Link>
+                            </ul>
+                        </div>
+                        <div class='md:flex pr-4'>
+                            <Link to='/login'>
+                                <button>Login</button>
+                            </Link>
+                        </div>
+                    </div>
+                </>
+                )}
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 
 async function fetchGraphQL(query, variables, operationName) {
 	const result = await fetch("https://beta.pokeapi.co/graphql/v1beta", {

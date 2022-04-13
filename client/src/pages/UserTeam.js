@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_ME } from '../utils/queries';
+import Auth from '../utils/auth';
 import profOakNavi from "../assets/professoroak-navi.png";
 import snorlax from "../assets/snorlax-image.png"
 
 function UserTeam() {
+    const { loading, data } = useQuery(QUERY_ME)
+    const userData = data?.me || {};
+    console.log(userData);
+    // console.log(userData.teams[1].pokemon[0].name);
+
+    const [ownedPokemon, setOwnedPokemon] = useState([]);
+
+    useEffect(() => {
+        setOwnedPokemon(userData.teams);
+    }, [userData.teams])
+    console.log(ownedPokemon);
+
     return(
         <section>
             <div className='grid grid-flow-row auto-rows-max place-items-center'>
@@ -34,150 +49,38 @@ function UserTeam() {
                 </div>
             </div>
             <div className='grid grid-col-1 md:grid-cols-3 gap-4 m-4 p-4  w-full h-screen'>
-                <div className='card w-96 h-96'>
-                    <div>
-                        <img
-                            className='scale-50'
-                            src={snorlax}
-                            alt='snorlax' 
-                        />
-                    </div>
-                    <div>
-                        <span className='text-center'>
-                            <div>
-                                Name:
+                {ownedPokemon.teams !== undefined ? (
+                    ownedPokemon.teams.map((pokemon) => {
+                        return (
+                            <div className='card w-96 h-96'>
+                                <div>
+                                    <img
+                                        className='scale-50'
+                                        src={snorlax}
+                                        alt='snorlax' 
+                                    />
+                                </div>
+                                <div>
+                                    <span className='text-center'>
+                                        <div>
+                                            Name: <p className='text-sm' key={pokemon.id}>{pokemon.name}</p>
+                                        </div>
+                                        <div>
+                                            Type:
+                                        </div>
+                                        <div className='flex justify-around items-baseline'>
+                                            <button>
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </span>
+                                </div>
                             </div>
-                            <div>
-                                Type:
-                            </div>
-                            <div className='flex justify-around items-baseline'>
-                                <button>
-                                    Remove
-                                </button>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-                <div className='card w-96 h-96'>
-                    <div>
-                        <img
-                            className='scale-50'
-                            src={snorlax}
-                            alt='snorlax' 
-                        />
-                    </div>
-                    <div className='container'>
-                        <span className='text-center'>
-                            <div>
-                                Name:
-                            </div>
-                            <div>
-                                Type:
-                            </div>
-                            <div className='flex justify-around items-baseline'>
-                                <button>
-                                    Remove
-                                </button>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-                <div className='card w-96 h-96'>
-                    <div>
-                        <img
-                            className='scale-50'
-                            src={snorlax}
-                            alt='snorlax' 
-                        />
-                    </div>
-                    <div className='container'>
-                        <span className='text-center'>
-                            <div>
-                                Name:
-                            </div>
-                            <div>
-                                Type:
-                            </div>
-                            <div className='flex justify-around items-baseline'>
-                                <button>
-                                    Remove
-                                </button>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-                <div className='card w-96 h-96'>
-                    <div>
-                        <img
-                            className='scale-50'
-                            src={snorlax}
-                            alt='snorlax' 
-                        />
-                    </div>
-                    <div className='container'>
-                        <span className='text-center'>
-                            <div>
-                                Name:
-                            </div>
-                            <div>
-                                Type:
-                            </div>
-                            <div className='flex justify-around items-baseline'>
-                                <button>
-                                    Remove
-                                </button>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-                <div className='card w-96 h-96'>
-                    <div>
-                        <img
-                            className='scale-50'
-                            src={snorlax}
-                            alt='snorlax' 
-                        />
-                    </div>
-                    <div className='container'>
-                        <span className='text-center'>
-                            <div>
-                                Name:
-                            </div>
-                            <div>
-                                Type:
-                            </div>
-                            <div className='flex justify-around items-baseline'>
-                                <button>
-                                    Remove
-                                </button>
-                            </div>
-                        </span>
-                    </div>
-                </div>
-                <div className='card w-96 h-96'>
-                    <div>
-                        <img
-                            className='scale-50'
-                            src={snorlax}
-                            alt='snorlax' 
-                        />
-                    </div>
-                    <div className='container'>
-                        <span className='text-center'>
-                            <div>
-                                Name:
-                            </div>
-                            <div>
-                                Type:
-                            </div>
-                            <div className='flex justify-around items-baseline'>
-                                <button>
-                                    Remove
-                                </button>
-                            </div>
-                        </span>
-                    </div>
-                </div>
+                        );
+                    })
+                ) : (
+                    <div>No Pokemon</div>
+                )}
             </div>
         </section>
 

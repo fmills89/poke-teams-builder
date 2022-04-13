@@ -5,7 +5,7 @@ import pokedexIcon from '../../assets/pokedex-icon.png'
 function Header() {
     return(
         <header>
-             <div className="bg-red-700 shadow-lg">
+             <div className="bg-gradient-to-r from-red-700 to-red-500 shadow-lg">
                 <div className="flex items-center">
                     <img
                         src={pokedexIcon}

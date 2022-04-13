@@ -1,5 +1,6 @@
 import React from 'react';
 import profOakNavi from "../assets/professoroak-navi.png";
+import snorlax from "../assets/snorlax-image.png"
 
 function UserTeam() {
     return(
@@ -33,81 +34,147 @@ function UserTeam() {
                 </div>
             </div>
             <div className='grid grid-col-1 md:grid-cols-3 gap-4 m-4 p-4  w-full h-screen'>
-                <div className='card'>
-                    <div className='container'>
-                        <span>
+                <div className='card w-96 h-96'>
+                    <div>
+                        <img
+                            className='scale-50'
+                            src={snorlax}
+                            alt='snorlax' 
+                        />
+                    </div>
+                    <div>
+                        <span className='text-center'>
                             <div>
                                 Name:
                             </div>
                             <div>
                                 Type:
                             </div>
-                            <button>Remove</button>
+                            <div className='flex justify-around items-baseline'>
+                                <button>
+                                    Remove
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card w-96 h-96'>
+                    <div>
+                        <img
+                            className='scale-50'
+                            src={snorlax}
+                            alt='snorlax' 
+                        />
+                    </div>
                     <div className='container'>
-                        <span>
+                        <span className='text-center'>
                             <div>
                                 Name:
                             </div>
                             <div>
                                 Type:
                             </div>
-                            <button>Remove</button>
+                            <div className='flex justify-around items-baseline'>
+                                <button>
+                                    Remove
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card w-96 h-96'>
+                    <div>
+                        <img
+                            className='scale-50'
+                            src={snorlax}
+                            alt='snorlax' 
+                        />
+                    </div>
                     <div className='container'>
-                        <span>
+                        <span className='text-center'>
                             <div>
                                 Name:
                             </div>
                             <div>
                                 Type:
                             </div>
-                            <button>Remove</button>
+                            <div className='flex justify-around items-baseline'>
+                                <button>
+                                    Remove
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card w-96 h-96'>
+                    <div>
+                        <img
+                            className='scale-50'
+                            src={snorlax}
+                            alt='snorlax' 
+                        />
+                    </div>
                     <div className='container'>
-                        <span>
+                        <span className='text-center'>
                             <div>
                                 Name:
                             </div>
                             <div>
                                 Type:
                             </div>
-                            <button>Remove</button>
+                            <div className='flex justify-around items-baseline'>
+                                <button>
+                                    Remove
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card w-96 h-96'>
+                    <div>
+                        <img
+                            className='scale-50'
+                            src={snorlax}
+                            alt='snorlax' 
+                        />
+                    </div>
                     <div className='container'>
-                        <span>
+                        <span className='text-center'>
                             <div>
                                 Name:
                             </div>
                             <div>
                                 Type:
                             </div>
-                            <button>Remove</button>
+                            <div className='flex justify-around items-baseline'>
+                                <button>
+                                    Remove
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>
-                <div className='card'>
+                <div className='card w-96 h-96'>
+                    <div>
+                        <img
+                            className='scale-50'
+                            src={snorlax}
+                            alt='snorlax' 
+                        />
+                    </div>
                     <div className='container'>
-                        <span>
+                        <span className='text-center'>
                             <div>
                                 Name:
                             </div>
                             <div>
                                 Type:
                             </div>
-                            <button>Remove</button>
+                            <div className='flex justify-around items-baseline'>
+                                <button>
+                                    Remove
+                                </button>
+                            </div>
                         </span>
                     </div>
                 </div>

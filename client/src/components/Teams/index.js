@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Auth from "../../utils/auth";
 import { fetchPokemon_details } from "../../utils/API";
 import { ADD_TEAM } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
-import { savePokemonIds, getSavedPokemonIds } from "../../utils/localStorage";
+import Auth from "../../utils/auth";
 
 import profOak from "../../assets/professor-oak-image.png";
 import snorlax from "../../assets/snorlax-image.png";
@@ -14,14 +13,8 @@ import profOakNavi from "../../assets/professoroak-navi.png";
 let pokemon;
 
 function Teams() {
-	const [searchedPokemon, setSearchedPokemon] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
-	const [savedPokemonIds, setSavedPokemonIds] = useState(getSavedPokemonIds());
 	const [savePokemon] = useMutation(ADD_TEAM);
-
-	useEffect(() => {
-		return () => savePokemonIds(savedPokemonIds);
-	});
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -40,7 +33,7 @@ function Teams() {
 				name: items.name,
 				type: items.pokemon_v2_pokemons_aggregate.nodes[0]
 					.pokemon_v2_pokemontypes[0].pokemon_v2_type.name,
-				pokemonId: items.id
+				_id: items.id
 			};
 
 			if (
@@ -54,7 +47,6 @@ function Teams() {
 			console.log(pokemon);
 			console.log("type2 =" + pokemon.type2);
 
-			setSearchedPokemon(pokemon)
 			setSearchInput("");
 		} catch (err) {
 			console.error(err);
@@ -63,8 +55,8 @@ function Teams() {
 		//return pokemon;
 	};
 
-	const handleSavePokemon = async (pokemonId) => {
-		const pokemonToSave = ((pokemon) => pokemon.pokemonId === pokemonId);
+	const handleSavePokemon = async (pokemon) => {
+
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 		console.log(token);
 
@@ -72,11 +64,20 @@ function Teams() {
 			return false;
 		}
 
+		console.log(pokemon);
+
 		try{
 			const { data } = await savePokemon({
-				variables: { input: pokemonToSave },
+				variables: { 
+					pokemon: {
+						_id: pokemon._id,
+						name: pokemon.name,
+						type: pokemon.type,
+					}
+				},
+
 			});
-			setSavedPokemonIds([...savedPokemonIds, pokemonToSave.pokemonId]);
+			
 		} catch (err) {
 			console.error(err);
 		}
@@ -153,11 +154,8 @@ function Teams() {
 									</div>
 									<div className='flex justify-around items-baseline'>
 										<button
-											disabled={savedPokemonIds?.some((savedPokemonId) => savedPokemonId === pokemon.pokemonId)}
-											onClick={() => handleSavePokemon(pokemon.pokemonId)}>
-												{savedPokemonIds?.some((savedPokemonId) => savedPokemonId === pokemon.pokemonId)
-													? 'This pokemon has already been saved!'
-													: 'Save this pokemon'}
+											onClick={() => handleSavePokemon(pokemon)}>
+												Save this pokemon!
 										</button>
 									</div>
 								</div>

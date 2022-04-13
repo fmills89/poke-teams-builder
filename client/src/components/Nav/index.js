@@ -21,7 +21,7 @@ function Nav() {
                                 <Link to='/'>
                                     <li>Dashboard</li>
                                 </Link>
-                                <Link to='/team'>
+                                <Link to='/singleteam'>
                                     <li>Team</li>
                                 </Link>
                                 <Link to='/'>

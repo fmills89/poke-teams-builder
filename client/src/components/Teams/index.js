@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 import { fetchPokemon_details } from "../../utils/API";
+import { ADD_TEAM } from "../../utils/mutations";
+import { useMutation } from "@apollo/client";
+import { savePokemonIds, getSavedPokemonIds } from "../../utils/localStorage";
 
 import profOak from "../../assets/professor-oak-image.png";
-import snorlax from "../../assets/snorlax-icon.png";
+import snorlax from "../../assets/snorlax-image.png";
 import profOakNavi from "../../assets/professoroak-navi.png";
+
 
 let pokemon;
 
 function Teams() {
+	const [searchedPokemon, setSearchedPokemon] = useState([]);
 	const [searchInput, setSearchInput] = useState("");
+	const [savedPokemonIds, setSavedPokemonIds] = useState(getSavedPokemonIds());
+	const [savePokemon] = useMutation(ADD_TEAM);
+
+	useEffect(() => {
+		return () => savePokemonIds(savedPokemonIds);
+	});
+
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
 		if (!searchInput) {
@@ -28,6 +40,7 @@ function Teams() {
 				name: items.name,
 				type: items.pokemon_v2_pokemons_aggregate.nodes[0]
 					.pokemon_v2_pokemontypes[0].pokemon_v2_type.name,
+				pokemonId: items.id
 			};
 
 			if (
@@ -41,6 +54,7 @@ function Teams() {
 			console.log(pokemon);
 			console.log("type2 =" + pokemon.type2);
 
+			setSearchedPokemon(pokemon)
 			setSearchInput("");
 		} catch (err) {
 			console.error(err);
@@ -48,73 +62,132 @@ function Teams() {
 
 		//return pokemon;
 	};
+
+	const handleSavePokemon = async (pokemonId) => {
+		const pokemonToSave = ((pokemon) => pokemon.pokemonId === pokemonId);
+		const token = Auth.loggedIn() ? Auth.getToken() : null;
+		console.log(token);
+
+		if (!token) {
+			return false;
+		}
+
+		try{
+			const { data } = await savePokemon({
+				variables: { input: pokemonToSave },
+			});
+			setSavedPokemonIds([...savedPokemonIds, pokemonToSave.pokemonId]);
+		} catch (err) {
+			console.error(err);
+		}
+	}
 	return (
 		<div>
 			{Auth.loggedIn() ? (
 				<>
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center mb-8 px-10 pb-64 w-full md:h-screen max-h-full">
-						<div class="card">
-							<div class="mt-8 bg-white shadow-md sm:rounded-lg rounded-lg text-left">
-								<div class="md:flex-wrap flex">
-									<img
-										class="mx-2 px-2 pt-2 md:scale-100 scale-75"
-										src={profOakNavi}
-										alt="professor-oak-navi"
-									/>
-									<p class="text-center p-4 mt-10">
-										Begin by searching for a pokemon to add to your team!
-									</p>
-								</div>
-								<div className="h-2 bg-red-400 rounded-t-md"></div>
+					<div class='grid grid-cols-1 md:grid-cols-2 gap-4 m-4 p-4 place-items-center md:w-full md:h-screen'>
+						<div class="bg-white-200 drop-shadow-lg">
 								<form
-									className="py-8 px-8 rounded-md"
+									className="bg-white py-8 px-8 rounded-md"
 									onSubmit={handleFormSubmit}
 								>
-									<label className="block mt-3 font-semibold">
-										Enter Name:
-									</label>
-									<input
-										type="text"
-										name="searchInput"
-										value={searchInput}
-										onChange={(e) => setSearchInput(e.target.value)}
-										placeholder="Name"
-										className="border-red-300 w-full h-5 px-3 py-5 my-2 rounded-md"
-									/>
-									<div className="flex justify-around items-baseline">
-										<button type="submit" className="bg-red-500">
-											Search
-										</button>
+									<div class="">
+										<div className='grid grid-cols-1 place-items-center'>
+											<img
+												class="mx-2 px-2 pt-2 md:scale-100 "
+												src={profOakNavi}
+												alt="professor-oak-navi"
+											/>
+										</div>
+										<span>
+											<div className='text-sm text-center'>
+												<p class="text-center p-4 mt-10">
+													Begin by searching for a pokemon to add to your team!
+												</p>
+											</div>
+											<div className='text-center'>
+												<label className="mt-3 text-left">
+													Enter Name:
+												</label>
+												<div>
+													<input
+														type="text"
+														name="searchInput"
+														value={searchInput}
+														onChange={(e) => setSearchInput(e.target.value)}
+														placeholder="Name"
+														className="border-red-300 mt-2 md:w-80 w-40 rounded-md"
+													/>
+												</div>
+												<div className="flex justify-around items-baseline">
+													<button type="submit" className="bg-red-500">
+														Search
+													</button>
+												</div>
+											</div>
+										</span>
 									</div>
 								</form>
-							</div>
+							
 						</div>
 						{pokemon ? (
-							<div class="card p-20">
-								<div class="card">
-									<img src={snorlax} alt="snorlax" />
-									<span>
-										<div>Name: {pokemon.name}</div>
-										{pokemon.type2 ? (
-											<div>
-												Type: {pokemon.type}/{pokemon.type2}
-											</div>
-										) : (
-											<div>Type: {pokemon.type}</div>
-										)}
-									</span>
-									<button>Add to team!</button>
+							<div>
+								<div class="card w-96 h-96">
+									<div>
+										<img
+											className='scale-50'
+											src={snorlax} 
+											alt="snorlax" />
+									</div>
+									<div>
+										<span className='text-center'>
+											<div><p className='text-sm'>Name: {pokemon.name}</p></div>
+											{pokemon.type2 ? (
+												<div>
+													<p className='text-sm'>Type: {pokemon.type}/{pokemon.type2}</p>
+												</div>
+											) : (
+												<div><p className='text-sm'>Type: {pokemon.type}</p></div>
+											)}
+										</span>
+									</div>
+									<div className='flex justify-around items-baseline'>
+										<button
+											disabled={savedPokemonIds?.some((savedPokemonId) => savedPokemonId === pokemon.pokemonId)}
+											onClick={() => handleSavePokemon(pokemon.pokemonId)}>
+												{savedPokemonIds?.some((savedPokemonId) => savedPokemonId === pokemon.pokemonId)
+													? 'This pokemon has already been saved!'
+													: 'Save this pokemon'}
+										</button>
+									</div>
 								</div>
 							</div>
 						) : (
-							<div class="card p-20">
-								<div class="card">
-									<img src={snorlax} alt="snorlax" />
-									<span>
-										<div>Name: Snorlax </div>
-										<div>Type: Normal </div>
+							<div class="card w-96 h-96">
+								<div>
+									<img 
+										className='scale-50'
+										src={snorlax} 
+										alt="snorlax" />
+								</div>
+								<div>
+									<span className='text-center'>
+										<div>
+											<p className='text-sm'>
+												Name: Snorlax 
+											</p>
+										</div>
+										<div>
+											<p className='text-sm'>
+												Type: Normal
+											</p>
+										</div>
 									</span>
-									<button>Add to team!</button>
+								</div>
+								<div className="flex justify-around items-baseline">
+									<button className="bg-red-500">
+										Add to team!
+									</button>
 								</div>
 							</div>
 						)}

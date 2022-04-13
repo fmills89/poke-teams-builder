@@ -16,6 +16,7 @@ import Teams from './components/Teams';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import UserTeam from './pages/UserTeam';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql',
@@ -26,7 +27,7 @@ const authLink = setContext((_, { headers }) => {
   return {
     header: {
       ...headers,
-      authorization: token ? `Bearer ${token}`: '',
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
@@ -49,6 +50,7 @@ function App() {
             <Route exact path='/login' component={Login} />
             {/* <Route exact path='/signup' component={SignUp} /> */}
             <Route exact path='/teams' component={Teams} />
+            <Route exact path='/singleteam' component={UserTeam} />
             <Route component={NoMatch} />
           </Switch>
         <Footer />

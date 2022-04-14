@@ -19,91 +19,94 @@ function UserTeam() {
 		setOwnedPokemon(userData.teams);
 	}, [userData.teams]);
 	console.log(ownedPokemon);
+    
+    const handleRemovePokemon = async (pokemonId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log(pokemonId);
+        if (!token) {
+            return false;
+        }
 
-	const handleRemovePokemon = async (pokemonId) => {
-		const token = Auth.loggedIn() ? Auth.getToken() : null;
-		console.log(pokemonId);
-		if (!token) {
-			return false;
-		}
-
-		try {
-			const { data } = await removePokemon({
-				variables: {
-					id: pokemonId,
-				},
-			});
-		} catch (err) {
-			console.error(err);
-		}
-	};
-
-	return (
-		<section>
-			<div className="grid grid-flow-row auto-rows-max place-items-center">
-				<div className="w-1/3 md:h-[120px] h-40 mt-6 z-10 bg-zinc-200 drop-shadow-lg rounded-md">
-					<div className="h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-t-md"></div>
-					<div>
-						<p className="text-center mt-2 p-4">Welcome to your team's page!</p>
-					</div>
-				</div>
-				<div className="w-3/4 md:h-48 h-80 mt-6 z-10 bg-zinc-200 drop-shadow-lg rounded-md">
-					<div className="h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-t-md"></div>
-					<div className="flex">
-						<div className="w-1/3">
-							<img
-								className="mx-2 mt-6"
-								src={profOakNavi}
-								alt="professor oak navi"
-							/>
-						</div>
-						<div className="w-2/3">
-							<p className="text-center mt-4 p-4 text:xs md:text-sm">
-								Here you can edit your team! Simply click the remove button and
-								head back to the dashboard to add more pokemon!
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div className="grid grid-col-1 md:grid-cols-3 gap-4 m-4 p-4  w-full h-screen">
-				{ownedPokemon !== undefined ? (
-					ownedPokemon.map((pokemon) => {
-						return (
-							<div className="card w-96 h-96">
-								<div>
-									<img className="scale-50" src={snorlax} alt="snorlax" />
-								</div>
-								<div>
-									<span className="text-center">
-										<div>
-											Name:{" "}
-											<p className="text-sm" key={pokemon.id}>
-												{pokemon.pokemon[0].name}
-											</p>
-										</div>
-										<div>
-											Type:{" "}
-											<p className="text-sm" key={pokemon.id}>
-												{pokemon.pokemon[0].type}
-											</p>
-										</div>
-										<div className="flex justify-around items-baseline">
+        try {
+            const { data } = await removePokemon({
+                variables: {
+                    id: pokemonId,
+                },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    return(
+        <section>
+            <div className='grid grid-flow-row auto-rows-max place-items-center'>
+                <div className='w-1/3 md:h-[120px] h-40 mt-6 z-10 bg-white drop-shadow-lg rounded-md'>
+                    <div className='h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-t-md'></div>
+                        <div>
+                            <p className='text-center mt-2 p-4'>Welcome to your team's page!</p>
+                        </div>
+                    </div>
+                <div className='w-3/4 md:h-48 h-80 mt-6 z-10 bg-white drop-shadow-lg rounded-md'>
+                    <div className='h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-t-md'></div>
+                        <div className='flex'>
+                            {/* <div className='w-1/3'>
+                                <img
+                                    className='mx-2 mt-6 hidden'
+                                    src={profOakNavi}
+                                    alt='professor oak navi'
+                                />
+                            </div> */}
+                            <div className='md:w-full min-w-0'>
+                                <p className='text-center mt-4 p-4 text:xs md:text-sm'>
+                                    Here you can edit your team!
+                                    Simply click the remove button
+                                    and head back to the dashboard
+                                    to add more pokemon!
+                                </p>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div className='grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 md:gap-4 gap-10 m-4 p-4 xl:w-full xl:h-screen place-items-center'>
+                {ownedPokemon !== undefined ? (
+                    ownedPokemon.map((pokemon) => {
+                        return (
+                            <div className='card md:w-96 md:h-96 w-80 h-80'>
+                                <div className=''>
+                                    <img
+                                        className='scale-50'
+                                        src={snorlax}
+                                        alt='snorlax' 
+                                    />
+                                    <div>
+                                        <span className='text-center'>
+                                            <div>
+                                                <p className='text-sm' key={pokemon.id}>
+                                                    Name: {pokemon.pokemon[0].name}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <p className='text-sm' key={pokemon.id}>
+                                                    Type: {pokemon.pokemon[0].type}
+                                                </p>
+                                            </div>
+                                        </span>
+                                        <div className="flex justify-around items-baseline">
 											<button onClick={() => handleRemovePokemon(pokemon._id)}>
 												Remove
 											</button>
 										</div>
-									</span>
-								</div>
-							</div>
-						);
-					})
-				) : (
-					<div>No Pokemon</div>
-				)}
-			</div>
-		</section>
-	);
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })
+                ) : (
+                    <div>No Pokemon</div>
+                )}
+            </div>
+        </section>
+    );
 }
 
 export default UserTeam;

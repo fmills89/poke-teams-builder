@@ -12,7 +12,7 @@ function Nav() {
     };
 
     return (
-        <div className="w-screen h-[80px] z-10 bg-zinc-200 drop-shadow-lg">
+        <div className="w-screen h-[80px] z-10 bg-white drop-shadow-lg">
             {Auth.loggedIn() ? (
                 <>
                     <div className='px-2 flex justify-between items-center w-full h-full'>
@@ -23,9 +23,6 @@ function Nav() {
                                 </Link>
                                 <Link to='/singleteam'>
                                     <li>Team</li>
-                                </Link>
-                                <Link to='/'>
-                                    <li>Trainers</li>
                                 </Link>
                             </ul>
                         </div>

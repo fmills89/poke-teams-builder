@@ -124,7 +124,7 @@ function Teams() {
 						</div>
 						{pokemon ? (
 							<div>
-								<div class="card w-96 h-96">
+								<div class="card md:w-96 md:h-96">
 									<div>
 										<img className="scale-50" src={snorlax} alt="snorlax" />
 									</div>
@@ -154,7 +154,7 @@ function Teams() {
 								</div>
 							</div>
 						) : (
-							<div class="card w-96 h-96">
+							<div class="card md:w-96 md:h-96">
 								<div>
 									<img className="scale-50" src={snorlax} alt="snorlax" />
 								</div>

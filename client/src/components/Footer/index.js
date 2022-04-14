@@ -1,6 +1,5 @@
 import React from 'react';
 import pokeHeart from '../../assets/pokeball-heart-icon.png'
-// import gitIcon from '../../assets/github-icon.png'
 
 function Footer() {
     return (
@@ -10,9 +9,6 @@ function Footer() {
                     <img
                         className='scale-75'
                         src={pokeHeart} alt="pokeball shaped heart" />
-                    {/* <img
-                        className='scale-75 '
-                        src={gitIcon} alt='github logo' /> */}
             </div>
         </footer>
     )

@@ -90,7 +90,6 @@ const Modal = () => {
                     />
                       <div class='flex justify-around my-4 px-4'>
                         <button
-                          // onClick={() => setShowModal(false)}
                           type='submit'
                           class='bg-red-600'
                         >

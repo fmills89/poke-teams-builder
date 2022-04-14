@@ -9,7 +9,6 @@ import profOak from "../../assets/professor-oak-image.png";
 import snorlax from "../../assets/snorlax-image.png";
 import profOakNavi from "../../assets/professoroak-navi.png";
 
-
 let pokemon;
 
 function Teams() {
@@ -33,7 +32,7 @@ function Teams() {
 				name: items.name,
 				type: items.pokemon_v2_pokemons_aggregate.nodes[0]
 					.pokemon_v2_pokemontypes[0].pokemon_v2_type.name,
-				_id: items.id
+				_id: items.id,
 			};
 
 			if (
@@ -51,12 +50,9 @@ function Teams() {
 		} catch (err) {
 			console.error(err);
 		}
-
-		//return pokemon;
 	};
 
 	const handleSavePokemon = async (pokemon) => {
-
 		const token = Auth.loggedIn() ? Auth.getToken() : null;
 		console.log(token);
 
@@ -66,96 +62,93 @@ function Teams() {
 
 		console.log(pokemon);
 
-		try{
+		try {
 			const { data } = await savePokemon({
-				variables: { 
+				variables: {
 					pokemon: {
 						_id: pokemon._id,
 						name: pokemon.name,
 						type: pokemon.type,
-					}
+					},
 				},
-
 			});
-			
 		} catch (err) {
 			console.error(err);
 		}
-	}
+	};
 	return (
 		<div>
 			{Auth.loggedIn() ? (
 				<>
-					<div class='grid grid-cols-1 md:grid-cols-2 gap-4 m-4 p-4 place-items-center md:w-full md:h-screen'>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-4 p-4 place-items-center md:w-full md:h-screen">
 						<div class="bg-white-200 drop-shadow-lg">
-								<form
-									className="bg-white py-8 px-8 rounded-md"
-									onSubmit={handleFormSubmit}
-								>
-									<div class="">
-										<div className='grid grid-cols-1 place-items-center'>
-											<img
-												class="mx-2 px-2 pt-2 md:scale-100 "
-												src={profOakNavi}
-												alt="professor-oak-navi"
-											/>
-										</div>
-										<span>
-											<div className='text-sm text-center'>
-												<p class="text-center p-4 mt-10">
-													Begin by searching for a pokemon to add to your team!
-												</p>
-											</div>
-											<div className='text-center'>
-												<label className="mt-3 text-left">
-													Enter Name:
-												</label>
-												<div>
-													<input
-														type="text"
-														name="searchInput"
-														value={searchInput}
-														onChange={(e) => setSearchInput(e.target.value)}
-														placeholder="Name"
-														className="border-red-300 mt-2 md:w-80 w-40 rounded-md"
-													/>
-												</div>
-												<div className="flex justify-around items-baseline">
-													<button type="submit" className="bg-red-500">
-														Search
-													</button>
-												</div>
-											</div>
-										</span>
+							<form
+								className="bg-white py-8 px-8 rounded-md"
+								onSubmit={handleFormSubmit}
+							>
+								<div class="">
+									<div className="grid grid-cols-1 place-items-center">
+										<img
+											class="mx-2 px-2 pt-2 md:scale-100 "
+											src={profOakNavi}
+											alt="professor-oak-navi"
+										/>
 									</div>
-								</form>
-							
+									<span>
+										<div className="text-sm text-center">
+											<p class="text-center p-4 mt-10">
+												Begin by searching for a pokemon to add to your team!
+											</p>
+										</div>
+										<div className="text-center">
+											<label className="mt-3 text-left">Enter Name:</label>
+											<div>
+												<input
+													type="text"
+													name="searchInput"
+													value={searchInput}
+													onChange={(e) => setSearchInput(e.target.value)}
+													placeholder="Name"
+													className="border-red-300 mt-2 md:w-80 w-40 rounded-md"
+												/>
+											</div>
+											<div className="flex justify-around items-baseline">
+												<button type="submit" className="bg-red-500">
+													Search
+												</button>
+											</div>
+										</div>
+									</span>
+								</div>
+							</form>
 						</div>
 						{pokemon ? (
 							<div>
 								<div class="card w-96 h-96">
 									<div>
-										<img
-											className='scale-50'
-											src={snorlax} 
-											alt="snorlax" />
+										<img className="scale-50" src={snorlax} alt="snorlax" />
 									</div>
 									<div>
-										<span className='text-center'>
-											<div><p className='text-sm'>Name: {pokemon.name}</p></div>
+										<span className="text-center">
+											<div>
+												<p className="text-sm">Name: {pokemon.name}</p>
+											</div>
 											{pokemon.type2 ? (
 												<div>
-													<p className='text-sm'>Type: {pokemon.type}/{pokemon.type2}</p>
+													<p className="text-sm">
+														Type: {pokemon.type}/{pokemon.type2}
+													</p>
 												</div>
 											) : (
-												<div><p className='text-sm'>Type: {pokemon.type}</p></div>
+												<div>
+													<p className="text-sm">Type: {pokemon.type}</p>
+												</div>
 											)}
 										</span>
 									</div>
-									<div className='flex justify-around items-baseline'>
-										<button
-											onClick={() => handleSavePokemon(pokemon)}>
-												Save this pokemon!
+									<div className="flex justify-around items-baseline">
+										<button onClick={() => handleSavePokemon(pokemon)}>
+											Save this pokemon!
 										</button>
 									</div>
 								</div>
@@ -163,29 +156,20 @@ function Teams() {
 						) : (
 							<div class="card w-96 h-96">
 								<div>
-									<img 
-										className='scale-50'
-										src={snorlax} 
-										alt="snorlax" />
+									<img className="scale-50" src={snorlax} alt="snorlax" />
 								</div>
 								<div>
-									<span className='text-center'>
+									<span className="text-center">
 										<div>
-											<p className='text-sm'>
-												Name: Snorlax 
-											</p>
+											<p className="text-sm">Name: Snorlax</p>
 										</div>
 										<div>
-											<p className='text-sm'>
-												Type: Normal
-											</p>
+											<p className="text-sm">Type: Normal</p>
 										</div>
 									</span>
 								</div>
 								<div className="flex justify-around items-baseline">
-									<button className="bg-red-500">
-										Add to team!
-									</button>
+									<button className="bg-red-500">Add to team!</button>
 								</div>
 							</div>
 						)}

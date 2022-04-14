@@ -49,8 +49,8 @@ function UserTeam() {
                 </div>
             </div>
             <div className='grid grid-col-1 md:grid-cols-3 gap-4 m-4 p-4  w-full h-screen'>
-                {ownedPokemon.teams !== undefined ? (
-                    ownedPokemon.teams.map((pokemon) => {
+                {ownedPokemon !== undefined ? (
+                    ownedPokemon.map((pokemon) => {
                         return (
                             <div className='card w-96 h-96'>
                                 <div>
@@ -63,10 +63,14 @@ function UserTeam() {
                                 <div>
                                     <span className='text-center'>
                                         <div>
-                                            Name: <p className='text-sm' key={pokemon.id}>{pokemon.name}</p>
+                                            Name: <p className='text-sm' key={pokemon.id}>
+                                                {pokemon.pokemon[0].name}
+                                                </p>
                                         </div>
                                         <div>
-                                            Type:
+                                            Type: <p className='text-sm' key={pokemon.id}>
+                                                {pokemon.pokemon[0].type}
+                                            </p>
                                         </div>
                                         <div className='flex justify-around items-baseline'>
                                             <button>

@@ -1,23 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
-import Auth from '../utils/auth';
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../utils/queries";
+import { REMOVE } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
+import Auth from "../utils/auth";
 import profOakNavi from "../assets/professoroak-navi.png";
-import snorlax from "../assets/snorlax-image.png"
+import snorlax from "../assets/snorlax-image.png";
 
 function UserTeam() {
-    const { loading, data } = useQuery(QUERY_ME)
-    const userData = data?.me || {};
-    console.log(userData);
-    // console.log(userData.teams[1].pokemon[0].name);
+	const { loading, data } = useQuery(QUERY_ME);
+	const userData = data?.me || {};
+	const [removePokemon] = useMutation(REMOVE);
+	console.log(userData);
 
-    const [ownedPokemon, setOwnedPokemon] = useState([]);
+	const [ownedPokemon, setOwnedPokemon] = useState([]);
 
-    useEffect(() => {
-        setOwnedPokemon(userData.teams);
-    }, [userData.teams])
-    console.log(ownedPokemon);
+	useEffect(() => {
+		setOwnedPokemon(userData.teams);
+	}, [userData.teams]);
+	console.log(ownedPokemon);
+    
+    const handleRemovePokemon = async (pokemonId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log(pokemonId);
+        if (!token) {
+            return false;
+        }
 
+        try {
+            const { data } = await removePokemon({
+                variables: {
+                    id: pokemonId,
+                },
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
     return(
         <section>
             <div className='grid grid-flow-row auto-rows-max place-items-center'>
@@ -48,11 +67,11 @@ function UserTeam() {
                         </div>
                 </div>
             </div>
-            <div className='grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 gap-4 m-4 p-4 xl:w-full xl:h-screen'>
+            <div className='grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 md:gap-4 gap-10 m-4 p-4 xl:w-full xl:h-screen place-items-center'>
                 {ownedPokemon !== undefined ? (
                     ownedPokemon.map((pokemon) => {
                         return (
-                            <div className='card md:w-96 md:h-96 min-w-fit'>
+                            <div className='card md:w-96 md:h-96 w-80 h-80'>
                                 <div className=''>
                                     <img
                                         className='scale-50'
@@ -72,11 +91,11 @@ function UserTeam() {
                                                 </p>
                                             </div>
                                         </span>
-                                            <div className='flex justify-around items-baseline'>
-                                                <button>
-                                                    Remove
-                                                </button>
-                                            </div>
+                                        <div className="flex justify-around items-baseline">
+											<button onClick={() => handleRemovePokemon(pokemon._id)}>
+												Remove
+											</button>
+										</div>
                                     </div>
                                 </div>
                             </div>
@@ -87,8 +106,7 @@ function UserTeam() {
                 )}
             </div>
         </section>
-
     );
-};
+}
 
 export default UserTeam;

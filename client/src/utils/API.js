@@ -55,6 +55,4 @@ function listByType(name) {
 	return fetchGraphQL(query, { name: name }, "listByType");
 }
 
-module.exports = {
-    fetchPokemon_details
-};
+export default fetchPokemon_details;

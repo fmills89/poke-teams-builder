@@ -36,7 +36,7 @@ function Login(props) {
         <div>
             <div class='grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center mb-8 px-10 pb-64 w-full md:h-screen max-h-full'>
                         <img class='md:scale-100 scale-25' src={profOak} alt='profressor oak' />
-                    <div className=' mt-8 bg-white shadow-md sm:rounded-lg text-left'>
+                    <div className=' mt-8 bg-white shadow-md rounded-lg text-left'>
                         <p class='text-center p-6'>Lets start building your teams!</p>
                         <div className='h-2 bg-red-400 rounded-t-md'></div>
                             <form className='py-8 px-8' onSubmit={handleFormSubmit}>

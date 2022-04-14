@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchPokemon_details } from "../../utils/API";
+import fetchPokemon_details from "../../utils/API";
 import { ADD_TEAM } from "../../utils/mutations";
 import { useMutation } from "@apollo/client";
 import Auth from "../../utils/auth";

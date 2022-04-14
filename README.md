@@ -1,70 +1,72 @@
 # Pokemon Teams Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+* [Description](#description)
+* [Deployed Link](#deployed-link)
+* [Demo](#demo)
+* [Installation](#installation)
+* [Built With](#built-with)
+* [Team Members](#team-members)
+* [License](#license)
+* [Comments](#comments)
+* [Questions](#questions)
 
-## Available Scripts
+## Description
+A web application built for our final bootcamp group project. Utilizing the MERN stack and a few other amazing librarys/frameworks we are proud to display our Pokemon Teams Builder app. Pokemon Teams is a great way to build and edit your own custom team of pokemon. You are allowed to create an account and keep track of your single team!
 
-In the project directory, you can run:
+### Deployed Link
+Check out our website <a href='https://evening-mountain-59213.herokuapp.com/'> here!</a>
+## Demo
+https://user-images.githubusercontent.com/89666151/163449076-d8556ae7-4cc1-4b3c-810e-2ec8d00b993d.mp4
 
-### `npm start`
+## Installation
+```
+# Clone this repository
+$ git clone https://github.com/fmills89/poke-teams-builder.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Go into the repository
+$ cd poke-teams-builder
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Install dependencies
+$ npm install
 
-### `npm test`
+# Run the app
+$ npm run develop
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Built With
+* Mongoose.js
+* Express.js
+* React.js
+* Node.js
+* GraphQL
+* Apollo
+* Poke API
+  * Check out the PokeAPI <a href='https://pokeapi.co/'> here!</a> 
 
-### `npm run build`
+## Team Members
+* **Courtney Evins** - Typedefs and Resolvers
+* **Christopher Tijerina** - Server, Config, Queries, Mutations
+* **Forrest Mills** - Components, Pages, Styling
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
+- MIT
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Comments
+Pokemon Teams is in its early stages of development. Keep and eye out for updates. </br>
+Future Development Goals:
+* Multiple User Teams
+* Display User Teams
+* Add Friends
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Questions
+**Got questions?**
+* Courtney Evins
+  * Github: https://github.com/coevpen
+  * Email: koinuevins@gmail.com
+* Christopher Tijerina
+  * Github: https://github.com/Chris-Tijerina
+  * Email: ctijerina@live.com
+* Forrest Mills
+  * Github: https://github.com/fmills89
+  * Email: mills_forrest@yahoo.com

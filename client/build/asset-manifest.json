@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.3c4b8ab9.css",
-    "main.js": "/static/js/main.1b401fa0.js",
+    "main.js": "/static/js/main.70666447.js",
     "static/media/professoroak-navi.png": "/static/media/professoroak-navi.eea1dcefbd4239e2f3a9.png",
     "static/media/professor-oak-image.png": "/static/media/professor-oak-image.79227f372193bccfd03f.png",
     "static/media/snorlax-image.png": "/static/media/snorlax-image.040443bc5d695f3fdd09.png",
     "index.html": "/index.html",
     "main.3c4b8ab9.css.map": "/static/css/main.3c4b8ab9.css.map",
-    "main.1b401fa0.js.map": "/static/js/main.1b401fa0.js.map"
+    "main.70666447.js.map": "/static/js/main.70666447.js.map"
   },
   "entrypoints": [
     "static/css/main.3c4b8ab9.css",
-    "static/js/main.1b401fa0.js"
+    "static/js/main.70666447.js"
   ]
 }

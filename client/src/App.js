@@ -45,11 +45,17 @@ function App() {
           <Header />
           <Nav />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/" component={Home}>
+              
+            </Route>
+            <Route exact path="/login">
+              <Login/>
+            </Route>
             {/* <Route exact path='/signup' component={SignUp} /> */}
             {/* <Route exact path="/teams" component={Teams} /> */}
-            <Route exact path="/singleteam" component={UserTeam} />
+            <Route exact path="/singleteam">
+              <UserTeam/>  
+            </Route>
             <Route component={NoMatch} />
           </Switch>
         </>

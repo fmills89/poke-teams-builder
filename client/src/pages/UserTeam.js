@@ -6,23 +6,23 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import profOakNavi from '../assets/professoroak-navi.png';
 import snorlax from '../assets/snorlax-image.png';
+// import { set } from '../../../server/models/Pokemon';
 
 function UserTeam() {
   const { loading, data } = useQuery(QUERY_ME);
   const userData = data?.me || {};
   const [removePokemon] = useMutation(REMOVE);
-  console.log(userData);
 
   const [ownedPokemon, setOwnedPokemon] = useState([]);
 
   useEffect(() => {
     setOwnedPokemon(userData.teams);
   }, [userData.teams]);
-  console.log(ownedPokemon);
 
   const handleRemovePokemon = async pokemonId => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-    console.log(pokemonId);
+    console.log('clicked');
+
     if (!token) {
       return false;
     }
@@ -67,30 +67,18 @@ function UserTeam() {
       </div>
       <div className="grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 md:gap-4 gap-10 m-4 p-4 xl:w-full xl:h-screen place-items-center">
         {ownedPokemon !== undefined ? (
-          ownedPokemon.map(pokemon => {
+          ownedPokemon.map((pokemon, i) => {
             return (
-              <div className="card md:w-96 md:h-96 w-80 h-80">
-                <div className="">
-                  <img className="scale-50" src={snorlax} alt="snorlax" />
-                  <div>
-                    <span className="text-center">
-                      <div>
-                        <p className="text-sm" key={pokemon.id}>
-                          Name: {pokemon.pokemon[0].name}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-sm" key={pokemon.id}>
-                          Type: {pokemon.pokemon[0].type}
-                        </p>
-                      </div>
-                    </span>
-                    <div className="flex justify-around items-baseline">
-                      <button onClick={() => handleRemovePokemon(pokemon._id)}>
-                        Remove
-                      </button>
-                    </div>
-                  </div>
+              <div className="card md:w-96 md:h-96 w-80 h-80" key={i}>
+                <img className="scale-50" src={snorlax} alt="snorlax" />
+                <span className="text-center">
+                  <p className="text-sm">Name: {pokemon.pokemon[0].name}</p>
+                  <p className="text-sm">Type: {pokemon.pokemon[0].type}</p>
+                </span>
+                <div className="flex justify-around items-baseline">
+                  <form onSubmit={() => handleRemovePokemon(pokemon._id)}>
+                    <button>Remove</button>
+                  </form>
                 </div>
               </div>
             );

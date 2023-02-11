@@ -44,15 +44,15 @@ function App() {
         <>
           <Header />
           <Nav />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            {/* <Route exact path='/signup' component={SignUp} /> */}
+            {/* <Route exact path="/teams" component={Teams} /> */}
+            <Route exact path="/singleteam" component={UserTeam} />
+            <Route component={NoMatch} />
+          </Switch>
         </>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          {/* <Route exact path='/signup' component={SignUp} /> */}
-          {/* <Route exact path="/teams" component={Teams} /> */}
-          <Route exact path="/singleteam" component={UserTeam} />
-          <Route component={NoMatch} />
-        </Switch>
         <Footer />
       </Router>
     </ApolloProvider>

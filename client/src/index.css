@@ -5,33 +5,31 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        font-family: 'Press Start 2P', cursive;
-        @apply bg-gradient-to-r from-red-500 to-yellow-500
-        
-    }
+  body {
+    font-family: 'Press Start 2P', cursive;
+    @apply bg-gradient-to-r from-red-500 to-yellow-500;
+  }
 
-    li {
-        @apply p-4
-    }
+  li {
+    @apply p-4;
+  }
 
-    button {
-        @apply m-4 bg-red-500 text-white text-xs md:text-base py-2 px-6 rounded-lg 
+  button {
+    @apply m-4 bg-red-500 text-white text-xs md:text-base py-2 px-6 rounded-lg 
         shadow-lg shadow-red-500/50 opacity-100 hover:opacity-75
         transition ease-in-out delay-150 bg-red-500 hover:scale-110 
-        hover:bg-yellow-500 duration-300
-    }
-    
-    .card {
-        background-color: theme('colors.white');
-        border-radius: theme('borderRadius.lg');
-        padding: theme('spacing.6');
-        box-shadow: theme('boxShadow.xl');
-        height: 20rem;
-      }
+        hover:bg-yellow-500 duration-300;
+  }
+
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+    height: 30rem;
+  }
 }
 
-
 body {
-    background-color: #E3E1E6;
+  background-color: #e3e1e6;
 }

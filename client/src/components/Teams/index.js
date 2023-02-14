@@ -80,73 +80,53 @@ function Teams() {
     <div>
       {Auth.loggedIn() ? (
         <>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-4 p-4 place-items-center md:w-full md:h-screen">
-            <div class="bg-white-200 drop-shadow-lg">
-              <form
-                className="bg-white py-8 px-8 rounded-md"
-                onSubmit={handleFormSubmit}
-              >
-                <div class="">
-                  <div className="grid grid-cols-1 place-items-center">
-                    <img
-                      class="mx-2 px-2 pt-2 md:scale-100 "
-                      src={profOakNavi}
-                      alt="professor-oak-navi"
-                    />
-                  </div>
-                  <span>
-                    <div className="text-sm text-center">
-                      <p class="text-center p-4 mt-10">
-                        Begin by searching for a pokemon to add to your team!
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <label className="mt-3 text-left">Enter Name:</label>
-                      <div>
-                        <input
-                          type="text"
-                          name="searchInput"
-                          value={searchInput}
-                          onChange={e => setSearchInput(e.target.value)}
-                          placeholder="Name"
-                          className="border-red-300 mt-2 md:w-80 w-40 rounded-md"
-                        />
-                      </div>
-                      <div className="flex justify-around items-baseline">
-                        <button type="submit" className="bg-red-500">
-                          Search
-                        </button>
-                      </div>
-                    </div>
-                  </span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 m-4 p-4 place-items-center md:w-full md:h-screen">
+            <form className="card" onSubmit={handleFormSubmit}>
+              <div className="grid grid-cols-1 place-items-center">
+                <img
+                  class="mx-2 px-2 pt-2 md:scale-100 "
+                  src={profOakNavi}
+                  alt="professor-oak-navi"
+                />
+              </div>
+              <span>
+                <div className="text-sm text-center">
+                  <p class="text-center p-4 mt-10">
+                    Begin by searching for a pokemon to add to your team!
+                  </p>
                 </div>
-              </form>
-            </div>
+                <div className="text-center">
+                  <label className="mt-3 text-left">Enter Name:</label>
+                  <input
+                    type="text"
+                    name="searchInput"
+                    value={searchInput}
+                    onChange={e => setSearchInput(e.target.value)}
+                    placeholder="Name"
+                    className="border-red-300 mt-2 md:w-80 w-40 rounded-md"
+                  />
+                  <div className="flex justify-around items-baseline">
+                    <button type="submit" className="bg-red-500">
+                      Search
+                    </button>
+                  </div>
+                </div>
+              </span>
+            </form>
+
             {pokemon ? (
               <div>
-                <div class="card md:w-96 md:h-96">
-                  <div>
-                    <img className="scale-50" src={snorlax} alt="snorlax" />
-                  </div>
-                  <div>
-                    <span className="text-center">
-                      <div>
-                        <p className="text-sm">Name: {pokemon.name}</p>
-                      </div>
-                      {pokemon.type2 ? (
-                        <div>
-                          <p className="text-sm">
-                            Type: {pokemon.type}/{pokemon.type2}
-                          </p>
-                        </div>
-                      ) : (
-                        <div>
-                          <p className="text-sm">Type: {pokemon.type}</p>
-                        </div>
-                      )}
-                    </span>
-                  </div>
-                  <div className="flex justify-around items-baseline">
+                <div class="card md:w-96 md:h-96 flex flex-col text-center justify-around">
+                  <img className="scale-50" src={snorlax} alt="snorlax" />
+                  <div className="p-4 m-4">
+                    <p className="text-sm">Name: {pokemon.name}</p>
+                    {pokemon.type2 ? (
+                      <p className="text-sm">
+                        Type: {pokemon.type}/{pokemon.type2}
+                      </p>
+                    ) : (
+                      <p className="text-sm">Type: {pokemon.type}</p>
+                    )}
                     <button onClick={() => handleSavePokemon(pokemon)}>
                       Save this pokemon!
                     </button>
@@ -154,21 +134,11 @@ function Teams() {
                 </div>
               </div>
             ) : (
-              <div class="card md:w-96 md:h-96">
-                <div>
+              <div class="card md:w-96 md:h-96 flex flex-col text-center justify-around">
+                <div className="p-4 m-4">
                   <img className="scale-50" src={snorlax} alt="snorlax" />
-                </div>
-                <div>
-                  <span className="text-center">
-                    <div>
-                      <p className="text-sm">Name: Snorlax</p>
-                    </div>
-                    <div>
-                      <p className="text-sm">Type: Normal</p>
-                    </div>
-                  </span>
-                </div>
-                <div className="flex justify-around items-baseline">
+                  <p className="text-sm">Name: Snorlax</p>
+                  <p className="text-sm">Type: Normal</p>
                   <button className="bg-red-500">Add to team!</button>
                 </div>
               </div>
@@ -179,9 +149,7 @@ function Teams() {
         <>
           <div className="w-full h-screen flex flex-col justify-between px-10 pb-64">
             <div className="grid md:grid-cols-2 max-w-[1240px] m-auto">
-              <div>
-                <img className="" src={profOak} alt="professor oak" />
-              </div>
+              <img className="" src={profOak} alt="professor oak" />
               <div className="flex flex-col justify-center items-center sm:items-center w-full px-2 py-8">
                 <p className="text-2xl text-center py-13 pb-6">
                   Welcome to Poke-Teams! Create an account to start building

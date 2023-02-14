@@ -5,9 +5,7 @@ import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 
 const Home = () => {
-    return (
-       <Teams />
-    )
+  return <Teams />;
 };
 
 export default Home;

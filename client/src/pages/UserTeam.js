@@ -39,24 +39,22 @@ function UserTeam() {
   };
   return (
     <section>
-      <div className="grid grid-flow-row auto-rows-max place-items-center">
+      <div className="grid grid-flow-row auto-rows-max place-items-center pt-20">
         <div className="w-1/3 md:h-[120px] h-40 mt-6 z-10 bg-white drop-shadow-lg rounded-md">
           <div className="h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-t-md"></div>
-          <div>
-            <p className="text-center mt-2 p-4">Welcome to your team's page!</p>
-          </div>
+          <p className="text-center mt-2 p-4">Welcome to your team's page!</p>
         </div>
         <div className="w-3/4 md:h-48 h-80 mt-6 z-10 bg-white drop-shadow-lg rounded-md">
           <div className="h-2 bg-gradient-to-r from-yellow-500 to-red-500 rounded-t-md"></div>
-          <div className="flex">
-            {/* <div className='w-1/3'>
-                                <img
-                                    className='mx-2 mt-6 hidden'
-                                    src={profOakNavi}
-                                    alt='professor oak navi'
-                                />
-                            </div> */}
-            <div className="md:w-full min-w-0">
+          <div className="flex justify-around">
+            <div className="w-1/3">
+              <img
+                className="mx-2 mt-6 md:scale-100 scale-75"
+                src={profOakNavi}
+                alt="professor oak navi"
+              />
+            </div>
+            <div className="md:w-full w-1/2">
               <p className="text-center mt-4 p-4 text:xs md:text-sm">
                 Here you can edit your team! Simply click the remove button and
                 head back to the dashboard to add more pokemon!
@@ -65,7 +63,7 @@ function UserTeam() {
           </div>
         </div>
       </div>
-      <div className="grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 md:gap-4 gap-10 m-4 p-4 xl:w-full xl:h-screen place-items-center">
+      <div className="grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 md:gap-20 gap-10 m-2 p-2 xl:w-full xl:h-screen place-items-center">
         {ownedPokemon !== undefined ? (
           ownedPokemon.map((pokemon, i) => {
             return (
